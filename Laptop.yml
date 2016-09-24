@@ -1,7 +1,7 @@
 --- # Conf to initiate a newly installed laptop
 - hosts: Laptop
   tasks:
-        # TODO: install dropbox, docker and matlab
+        # TODO: install dropbox, docker, chrome and matlab
         
         - name: adding spotify key
           apt_key: keyserver='hkp://keyserver.ubuntu.com:80' id='BBEBDCB318AD50EC6865090613B00F1FD2C19886'
