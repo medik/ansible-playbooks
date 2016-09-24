@@ -1,0 +1,30 @@
+--- # Conf to initiate a newly installed laptop
+- hosts: Laptop
+  tasks:
+        # TODO: install dropbox, docker and matlab
+        
+        - name: adding spotify key
+          apt_key: keyserver='hkp://keyserver.ubuntu.com:80' id='BBEBDCB318AD50EC6865090613B00F1FD2C19886'
+        
+        - name: adding spotify repo
+          apt_repository: state=present repo='deb http://repository.spotify.com stable non-free'
+
+        - name: install stuff
+          apt:  name={{item}} state=installed update_cache=yes
+          with_items:
+              - git
+              - spotify-client
+              - zsh
+              - texlive-full
+
+        - name: create dirs
+          file: path=/home/medik/{{ item }} state=directory
+          with_items:
+              - bin
+              - dev
+              - pics
+              - music
+              - downloads
+
+        - name: install dotfiles
+          git: repo=ssh://git@github.com:medik/dotfiles.git dest=/home/medik/dev/dotfiles
