@@ -1,13 +1,20 @@
 --- # Conf to initiate a newly installed laptop
-- hosts: Laptop
+- hosts: localhost
+  become: True
+  become_method: sudo
   tasks:
         # TODO: install dropbox, docker, chrome and matlab
-        
+
         - name: adding spotify key
           apt_key: keyserver='hkp://keyserver.ubuntu.com:80' id='BBEBDCB318AD50EC6865090613B00F1FD2C19886'
-        
+
         - name: adding spotify repo
           apt_repository: state=present repo='deb http://repository.spotify.com stable non-free'
+        - name: adding Dropbox key
+          apt_key: keyserver='pgp.mit.edu' id='5044912E'
+
+        - name: add dropbox repo
+          apt_repository: state=present repo='deb http://linux.dropbox.com/ubuntu {{ ansible_lsb.codename }} main'
 
         - name: install stuff
           apt:  name={{item}} state=installed update_cache=yes
@@ -16,7 +23,13 @@
               - spotify-client
               - zsh
               - texlive-full
+              - emacs
+              - vim
+              - dropbox
+              - haskell-platform
 
+- hosts: localhost
+  tasks:
         - name: create dirs
           file: path=/home/medik/{{ item }} state=directory
           with_items:
@@ -26,5 +39,8 @@
               - music
               - downloads
 
-        - name: install dotfiles
-          git: repo=ssh://git@github.com:medik/dotfiles.git dest=/home/medik/dev/dotfiles
+        - name: install dotfiles 
+          git: repo=git@github.com:medik/dotfiles.git dest=/home/medik/dev/dotfiles accept_hostkey=True key_file=~/.ssh/id_rsa
+
+        - name: bootstrap dotfiles
+          script: /home/medik/dev/dotfiles/bootstrap.sh
