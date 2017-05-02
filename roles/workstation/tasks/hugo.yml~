@@ -1,2 +1,0 @@
-- name: install hugo
-  apt: name=hugo state=installed update_cache=yes
