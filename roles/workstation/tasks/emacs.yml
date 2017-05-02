@@ -1,0 +1,5 @@
+- name: install emacs
+  apt: name={{item}} state=installed update_cache=yes
+  with_items:
+    - emacs
+    - yaml-mode

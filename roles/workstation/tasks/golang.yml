@@ -1,0 +1,4 @@
+- name: install golang
+  become: yes
+  apt: name=golang-any state=installed update_cache=yes
+  

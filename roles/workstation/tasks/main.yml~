@@ -1,0 +1,2 @@
+- include: golang.yml
+- include: hugo.yml

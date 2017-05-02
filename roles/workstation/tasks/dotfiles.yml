@@ -1,0 +1,14 @@
+- name: create dirs
+  file: path=/home/medik/{{ item }} state=directory
+  with_items:
+      - bin
+      - dev
+      - pics
+      - music
+      - downloads
+
+- name: install dotfiles 
+  git: repo=git@github.com:medik/dotfiles.git dest=/home/medik/dev/dotfiles accept_hostkey=True key_file=~/.ssh/id_rsa
+
+- name: bootstrap dotfiles
+  script: /home/medik/dev/dotfiles/bootstrap.sh

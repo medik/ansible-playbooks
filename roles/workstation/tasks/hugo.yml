@@ -1,0 +1,3 @@
+- name: install hugo
+  become: yes
+  apt: name=hugo state=installed update_cache=yes

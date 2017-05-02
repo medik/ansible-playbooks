@@ -29,6 +29,7 @@
               - zsh
               - texlive-full
               - emacs
+              - yaml-mode
               - vim
               - dropbox
               - haskell-platform

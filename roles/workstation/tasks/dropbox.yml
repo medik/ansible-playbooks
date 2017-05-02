@@ -1,0 +1,12 @@
+        - name: adding Dropbox key
+          become: yes
+          apt_key: keyserver='pgp.mit.edu' id='5044912E'
+
+
+        - name: add dropbox repo
+          become: yes
+          apt_repository: state=present repo='deb http://linux.dropbox.com/ubuntu {{ ansible_lsb.codename }} main'
+
+        - name: install dropbox
+          become: yes
+          apt: name=dropbox state=installed update_cache=yes
