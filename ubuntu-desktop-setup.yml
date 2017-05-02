@@ -10,8 +10,13 @@
 
         - name: adding spotify repo
           apt_repository: state=present repo='deb http://repository.spotify.com stable non-free'
+
+        - name: add numix repo
+          apt_repository: state=present repo='ppa:numix/ppa'
+
         - name: adding Dropbox key
           apt_key: keyserver='pgp.mit.edu' id='5044912E'
+
 
         - name: add dropbox repo
           apt_repository: state=present repo='deb http://linux.dropbox.com/ubuntu {{ ansible_lsb.codename }} main'
@@ -27,6 +32,12 @@
               - vim
               - dropbox
               - haskell-platform
+              - conky
+              - numix-gtk-theme
+              - numix-icon-theme-circle
+              - numix-folders
+              - fonts-hack-otf
+              - fonts-hack-ttf
 
 - hosts: localhost
   tasks:
