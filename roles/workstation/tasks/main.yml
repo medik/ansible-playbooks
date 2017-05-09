@@ -8,4 +8,6 @@
 - include: other.yml
 - include: nvidia.yml
 
+- include: dvorak.yml
+
 - include: dotfiles.yml
