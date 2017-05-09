@@ -1,0 +1,5 @@
+- hosts: mailservers
+  become: yes
+  roles:
+    - { role: elnebuloso.docker }
+    - { role: elnebuloso.docker-teamspeak3 }
