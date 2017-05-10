@@ -1,0 +1,7 @@
+ - name: set mulitverse repo in apt
+   become: yes
+   apt_repository: state=present repo="multiverse"
+
+ - name: install steam
+   become: yes
+   apt: state=installed name=steam update_cache=yes

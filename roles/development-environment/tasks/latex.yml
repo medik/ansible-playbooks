@@ -1,0 +1,3 @@
+- name: install latex
+  become: yes
+  apt: name=texlive-full state=installed update_cache=yes

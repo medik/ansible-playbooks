@@ -1,7 +1,7 @@
 - name: add custom svorak xkb symbol file to /usr/share/X11/xkb/symbols
   become: yes
-  copy: src=se-svorak-custom dest=/usr/share/X11/xkb/symbols
+  copy: src=svorak/se-svorak-custom dest=/usr/share/X11/xkb/symbols
 
 - name: add custom svorak map to evdev.xml and remove obsolete maps
   become: yes
-  copy: src=evdev.xml dest=/usr/share/X11/xkb/rules
+  copy: src=svorak/evdev.xml dest=/usr/share/X11/xkb/rules

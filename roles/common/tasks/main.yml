@@ -1,0 +1,9 @@
+- include: {{item}}
+  with_items:
+      - conky.yml
+      - dropbox.yml
+      - dvorak.yml
+      - fonts.yml
+      - hugo.yml
+      - numix.yml
+      - spotify.yml

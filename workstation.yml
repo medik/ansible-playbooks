@@ -2,4 +2,6 @@
 - hosts: localhost
   connection: local
   roles:
-    - workstation
+    - common
+    - development-environment
+    - gaming-desktop

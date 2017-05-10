@@ -1,0 +1,4 @@
+ - include: emacs.yml
+ - include: golang.yml
+ - include: haskell.yml
+ - include: latex.yml
