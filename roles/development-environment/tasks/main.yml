@@ -1,5 +1,8 @@
- - include: emacs.yml
- - include: golang.yml
- - include: haskell.yml
- - include: latex.yml
- - include: python3.yml
+ - include: {{ item }}
+   with_items:
+     - emacs.yml
+     - golang.yml
+     - latex.yml
+     - python3.yml
+     - java.yml
+

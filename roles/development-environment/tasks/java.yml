@@ -1,0 +1,6 @@
+- name: install OpenJDK JRE + JDK
+  become: yes
+  apt: name={{ item }} state=installed update_cache=yes
+  with_items:
+    - openjdk-9-jre
+    - openjdk-9-jdk
