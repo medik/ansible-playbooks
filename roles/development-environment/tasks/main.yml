@@ -2,3 +2,4 @@
  - include: golang.yml
  - include: haskell.yml
  - include: latex.yml
+ - include: python3.yml
