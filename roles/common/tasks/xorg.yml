@@ -1,0 +1,3 @@
+- name: copy new xorg config to system
+  become: yes
+  copy: src=xorg.conf dest=/etc/X11/xorg.conf backup=yes
