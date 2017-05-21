@@ -6,3 +6,9 @@
   
 - name: add i3status.conf
   copy: src=i3status.conf dest={{ ansible_env.HOME }}/.i3status.conf
+
+- name: install compton
+  apt: name=compton state=installed update_cache=yes
+
+- name: add compton config
+  copy: src=compton.conf dest={{ ansible_env.HOME }}/.config/compton.conf
