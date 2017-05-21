@@ -1,7 +1,0 @@
-- name: add propertiary graphic drivers
-  become: yes
-  apt_repository: state=present repo='ppa:graphics-drivers/ppa'
-
-- name: add nvidia drivers
-  become: yes
-  apt: name=nvidia-current state=installed update_cache=yes
