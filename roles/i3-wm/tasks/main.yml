@@ -1,14 +1,18 @@
 - name: install i3
   apt: name=i3 state=installed update_cache=yes
 
+- name: install i3blocks
+  apt: name=i3blocks state=installed update_cache=yes
+
 - name: add i3 conf
   copy: src=i3config dest={{ ansible_env.HOME }}/.i3/config
   
-- name: add i3status.conf
-  copy: src=i3status.conf dest={{ ansible_env.HOME }}/.i3status.conf
+- name: add i3blocks.conf
+  copy: src=i3blocks.conf dest={{ ansible_env.HOME }}/.i3blocks.conf
 
 - name: install compton
   apt: name=compton state=installed update_cache=yes
 
 - name: add compton config
   copy: src=compton.conf dest={{ ansible_env.HOME }}/.config/compton.conf
+  
