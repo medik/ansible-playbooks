@@ -1,7 +1,7 @@
 ---
-- hosts: mailservers
+- hosts: helios
   remote_user: ubuntu
-  gather_facts: no
+  gather_facts: yes
   pre_tasks:
     - name: install python2
       raw: sudo apt-get -y install python-simplejson
@@ -13,13 +13,26 @@
     - name: install certbot
       become: yes
       apt: state=installed name=certbot update_cache=yes
-      
+
+    # TODO: configure certbot
+    
     - name: install dovecot
       become: yes
       apt: state=installed name={{item}} update_cache=yes
       with_items:
         - dovecot-core
         - dovecot-imapd
+
+    - name: copy dovecot conf
+      become: yes
+      copy: src=files/dovecot/{{item}} dest=/etc/dovecot/{{item}}
+      with_items:
+        - dovecot.conf
+        - conf.d/10-ssl.conf
+        
+    - name: reload dovecot
+      become: yes
+      shell: doveadm reload
         
     - name: install postfix
       become: yes
@@ -27,9 +40,17 @@
 
     - name: update postfix configuration
       become: yes
-      copy: src=postfix/main.cf dest=/etc/postfix/main.cf
+      copy: src=files/postfix/main.cf dest=/etc/postfix/main.cf
+
+    - name: add aliases
+      become: yes
+      copy: src=files/postfix/aliases dest=/etc/aliases
+
+    - name: update aliases
+      become: yes
+      shell: newaliases
 
     - name: reload postfix
       become: yes
       shell: postfix reload
-    
+      

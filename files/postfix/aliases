@@ -1,0 +1,5 @@
+# /etc/aliases
+# execute newaliases after changing this file
+
+postmaster: you
+root: you
