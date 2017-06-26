@@ -29,6 +29,8 @@
       with_items:
         - dovecot.conf
         - conf.d/10-ssl.conf
+        - conf.d/10-master.conf
+        - conf.d/10-auth.conf
         
     - name: reload dovecot
       become: yes
@@ -40,7 +42,10 @@
 
     - name: update postfix configuration
       become: yes
-      copy: src=files/postfix/main.cf dest=/etc/postfix/main.cf
+      copy: src=files/postfix/{{item}} dest=/etc/postfix/{{item}}
+      with_items:
+        - main.cf
+        - master.cf
 
     - name: add aliases
       become: yes
