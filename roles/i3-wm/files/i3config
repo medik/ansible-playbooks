@@ -1,12 +1,13 @@
 # i3 Config
 # =========
-# Last modified: 2017-05-20
+# Last modified: 2017-05-22
+#
 
 # Using the windows button as master key
 set $mod Mod4
 
 #font pango:Source Code Pro 8
-font pango:Hack 8
+font pango:Source Code Pro 8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -15,7 +16,7 @@ floating_modifier $mod
 bindsym $mod+Return exec gnome-terminal
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+Shift+c kill
 
 # start dmenu (a program launcher)
 bindsym $mod+g exec dmenu_run
@@ -99,9 +100,9 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $mod+Shift+g restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
@@ -146,13 +147,13 @@ bar {
         urgent_workspace   #aa0000 #990000 #ffffff
     }
     position top
-        status_command i3status
+        status_command i3blocks
 }
 
 # bindsym $mod+shift+s exec i3lock -c 000000 && systemctl suspend
 
 # Specialare
-bindsym $mod+shift+x exec i3lock
+bindsym $mod+shift+l exec i3lock
 
 exec --no-startup-id nm-applet
 
@@ -169,7 +170,10 @@ exec sh ~/.fehbg
 exec dropbox start
 
 # Locks computer after 1 minute
-exec xautolock -time 1 -locker i3lock
+exec xautolock -time 60 -locker i3lock
+
+# Start dunst
+exec dunst
 
 # bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
 # bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
