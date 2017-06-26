@@ -1,0 +1,35 @@
+---
+- hosts: mailservers
+  remote_user: ubuntu
+  gather_facts: no
+  pre_tasks:
+    - name: install python2
+      raw: sudo apt-get -y install python-simplejson
+  tasks:
+    - name: add certbot repository
+      become: yes
+      apt_repository: state=present repo='ppa:certbot/certbot'
+      
+    - name: install certbot
+      become: yes
+      apt: state=installed name=certbot update_cache=yes
+      
+    - name: install dovecot
+      become: yes
+      apt: state=installed name={{item}} update_cache=yes
+      with_items:
+        - dovecot-core
+        - dovecot-imapd
+        
+    - name: install postfix
+      become: yes
+      apt: state=installed name=postfix update_cache=yes
+
+    - name: update postfix configuration
+      become: yes
+      copy: src=postfix/main.cf dest=/etc/postfix/main.cf
+
+    - name: reload postfix
+      become: yes
+      shell: postfix reload
+    
