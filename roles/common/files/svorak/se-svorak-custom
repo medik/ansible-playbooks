@@ -41,7 +41,7 @@ xkb_symbols "svorak" {
 	key <AC09> { [ n,          N,          quotedbl,            none ] };
 	key <AC10> { [ s,          S,          asciitilde,          none ] };
 	key <AC11> { [ slash,      backslash,  grave,               none ] };
-	key <BKSL> { [ minus,      underscore, asterisk,            none ] };
+	key <BKSL> { [ minus,      underscore, apostrophe,            none ] };
 
 	key <LSGT> { [ comma,      semicolon,  bracketleft,         none ] };
 	key <AB01> { [ period,     colon,      bracketright,        none ] };
